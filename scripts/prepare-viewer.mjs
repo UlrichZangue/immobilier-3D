@@ -11,8 +11,8 @@ const settings = defaultSettings('environment');
 settings.cameras = [
   {
     initial: {
-      position: [-7, -1.3, -4.7],
-      target: [-5, -1.3, -4.7],
+      position: [-4, -1.3, -3.6],
+      target: [-2.3, -1.3, -2.6],
       fov: 85
     }
   }
