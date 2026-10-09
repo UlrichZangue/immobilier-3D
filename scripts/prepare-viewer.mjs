@@ -5,14 +5,12 @@ import { defaultSettings } from '@playcanvas/supersplat-viewer/settings';
 const outputDirectory = new URL('../public/viewer/', import.meta.url);
 const settings = defaultSettings('environment');
 
-// Start on the terrace, centered in front of the living-room sliding doors,
-// and look straight into the apartment. This reproduces the intended hero
-// view with the lounge on the left and dining area on the right.
+// Exact hero view captured interactively from the viewer.
 settings.cameras = [
   {
     initial: {
-      position: [-3.3, -1.5, -9.2],
-      target: [-3.3, -1.5, -3.8],
+      position: [2.904416938011165, 0.8492819439924082, -3.1626242931921484],
+      target: [8.653873081385061, 0.21588273067333297, -3.257010849771017],
       fov: 85
     }
   }
@@ -39,21 +37,7 @@ const html = renderViewerHtml({
   baseHref: '/viewer/',
   backgroundColor: [0.035, 0.035, 0.04],
   headExtras: bridge
-}).replace(
-  'const viewer = await main(canvas, settingsJson, config);',
-  `const viewer = await main(canvas, settingsJson, config);
-                window.getCameraView = () => {
-                    const camera = viewer.cameraManager?.camera;
-                    if (!camera) return null;
-                    const target = camera.position.clone();
-                    camera.calcFocusPoint(target);
-                    return {
-                        position: [camera.position.x, camera.position.y, camera.position.z],
-                        target: [target.x, target.y, target.z],
-                        fov: camera.fov
-                    };
-                };`
-);
+});
 
 await mkdir(outputDirectory, { recursive: true });
 await Promise.all([

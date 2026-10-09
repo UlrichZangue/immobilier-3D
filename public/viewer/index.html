@@ -16,7 +16,7 @@
             viewer goes through that function rather than pattern-matching this document.
             Left as `null` for the standalone case.
         -->
-        <script type="application/json" id="sse-bootstrap">{"settings":{"version":2,"tonemapping":"linear","highPrecisionRendering":false,"background":{"color":[0,0,0]},"postEffectSettings":{"sharpness":{"enabled":false,"amount":0},"bloom":{"enabled":false,"intensity":0.1,"blurLevel":2},"grading":{"enabled":false,"brightness":1,"contrast":1,"saturation":1,"tint":[1,1,1]},"vignette":{"enabled":false,"intensity":0.5,"inner":0.3,"outer":0.75,"curvature":1},"fringing":{"enabled":false,"intensity":0.5}},"animTracks":[],"cameras":[{"initial":{"position":[-3.3,-1.5,-9.2],"target":[-3.3,-1.5,-3.8],"fov":85}}],"annotations":[],"startMode":"default"},"contentUrl":"../splat.ply","contentFilename":"splat.ply"}</script>
+        <script type="application/json" id="sse-bootstrap">{"settings":{"version":2,"tonemapping":"linear","highPrecisionRendering":false,"background":{"color":[0,0,0]},"postEffectSettings":{"sharpness":{"enabled":false,"amount":0},"bloom":{"enabled":false,"intensity":0.1,"blurLevel":2},"grading":{"enabled":false,"brightness":1,"contrast":1,"saturation":1,"tint":[1,1,1]},"vignette":{"enabled":false,"intensity":0.5,"inner":0.3,"outer":0.75,"curvature":1},"fringing":{"enabled":false,"intensity":0.5}},"animTracks":[],"cameras":[{"initial":{"position":[2.904416938011165,0.8492819439924082,-3.1626242931921484],"target":[8.653873081385061,0.21588273067333297,-3.257010849771017],"fov":85}}],"annotations":[],"startMode":"default"},"contentUrl":"../splat.ply","contentFilename":"splat.ply"}</script>
 
         <script type="module">
             const createImage = (url) => {
@@ -706,17 +706,6 @@
                 const canvas = document.getElementById('application-canvas');
                 const settingsJson = await settings;
                 const viewer = await main(canvas, settingsJson, config);
-                window.getCameraView = () => {
-                    const camera = viewer.cameraManager?.camera;
-                    if (!camera) return null;
-                    const target = camera.position.clone();
-                    camera.calcFocusPoint(target);
-                    return {
-                        position: [camera.position.x, camera.position.y, camera.position.z],
-                        target: [target.x, target.y, target.z],
-                        fov: camera.fov
-                    };
-                };
             });
         </script>
     </body>
