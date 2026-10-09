@@ -87,6 +87,7 @@ h1 {
 }
 
 .fullscreen-button,
+.view-button,
 .error-panel button {
   display: inline-flex;
   align-items: center;
@@ -100,18 +101,27 @@ h1 {
   cursor: pointer;
 }
 
-.fullscreen-button {
+.fullscreen-button,
+.view-button {
   flex: 0 0 auto;
   padding: 0 13px;
 }
 
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .fullscreen-button:hover,
+.view-button:hover,
 .error-panel button:hover {
   border-color: #696e78;
   background: #2b2e34;
 }
 
 .fullscreen-button:focus-visible,
+.view-button:focus-visible,
 .error-panel button:focus-visible {
   outline: 2px solid #78d5c4;
   outline-offset: 2px;

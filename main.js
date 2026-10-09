@@ -6,6 +6,7 @@ const errorPanel = document.querySelector('#errorPanel');
 const errorMessage = document.querySelector('#errorMessage');
 const retryButton = document.querySelector('#retryButton');
 const fullscreenButton = document.querySelector('#fullscreenButton');
+const copyViewButton = document.querySelector('#copyViewButton');
 
 const showError = (message) => {
   startup.classList.add('is-hidden');
@@ -55,6 +56,22 @@ fullscreenButton.addEventListener('click', async () => {
     }
   } catch {
     showError('Le plein écran n’est pas disponible dans ce navigateur.');
+  }
+});
+
+copyViewButton.addEventListener('click', async () => {
+  const view = viewer.contentWindow?.getCameraView?.();
+  if (!view) {
+    statusText.textContent = 'La caméra n’est pas encore prête';
+    return;
+  }
+
+  const value = JSON.stringify(view);
+  try {
+    await navigator.clipboard.writeText(value);
+    statusText.textContent = 'Vue copiée — collez les coordonnées dans le chat';
+  } catch {
+    window.prompt('Copiez ces coordonnées :', value);
   }
 });
 

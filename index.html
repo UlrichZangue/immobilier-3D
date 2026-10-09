@@ -28,16 +28,19 @@
           </div>
         </div>
 
-        <button class="fullscreen-button" id="fullscreenButton" type="button" aria-label="Afficher en plein écran">
-          <span aria-hidden="true">⛶</span>
-          <span class="button-label">Plein écran</span>
-        </button>
+        <div class="toolbar-actions">
+          <button class="view-button" id="copyViewButton" type="button">Copier la vue</button>
+          <button class="fullscreen-button" id="fullscreenButton" type="button" aria-label="Afficher en plein écran">
+            <span aria-hidden="true">⛶</span>
+            <span class="button-label">Plein écran</span>
+          </button>
+        </div>
       </header>
 
       <section class="viewport" aria-label="Visualisation 3D interactive">
         <iframe
           id="splatViewer"
-          src="/viewer/index.html?lang=fr"
+          src="/viewer/index.html?lang=fr&amp;noanim=1"
           title="Reconstruction Gaussian Splat de l'appartement"
           allow="fullscreen; xr-spatial-tracking"
         ></iframe>
